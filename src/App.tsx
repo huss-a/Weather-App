@@ -3,7 +3,7 @@ import WeatherCard from "./components/WeatherCard";
 import { fetchCoords, fetchWeather } from "./util/makeRequests";
 import { Button, Form } from "react-bootstrap";
 import Loader from "./components/Loader";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 export interface WeatherProps {
     location: { city: string; country: string };
@@ -32,7 +32,7 @@ function App() {
         if (data) setCoords([`${data.lat}`, `${data.lon}`]);
         else {
             setIsLoading(false);
-            toast.error("Invalid location", {autoClose: 2000});
+            toast.error("Invalid location", { autoClose: 2000 });
             return;
         }
     };
@@ -85,10 +85,10 @@ function App() {
                     onClick={handleSubmit}
                     disabled={!inputPlace}
                 >
-                    {isLoading ? <Loader /> : <>Get Weather</>}
+                    {isLoading ? <Loader size="sm" /> : <>Get Weather</>}
                 </Button>
             </div>
-            {weather ? <WeatherCard weather={weather} /> : <Loader />}
+            {weather ? <WeatherCard weather={weather} /> : <Loader size="lg" />}
         </div>
     );
 }
