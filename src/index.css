@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap");
+
+* {
+    font-family: Montserrat, sans-serif;
+}
+
+.wrapper {
+    background-image: url("./images/cris-tagupa-lT7zmkth3o8-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.card.weather-card {
+    color: white;
+    width: 55%;
+    border: none;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(4.9px);
+}
+
+.form-wrapper .form-control {
+    width: 80%;
+}
+
+.form-wrapper {
+    width: 55%;
+}
+
+.loader {
+    animation: spinner 3s infinite linear;
+    /* white filter */
+    filter: invert(99%) sepia(1%) saturate(0%) hue-rotate(211deg)
+        brightness(100%) contrast(101%);
+}
+
+.loader.sm {
+    max-height: 30px;
+}
+.loader.lg {
+    max-height: 100px;
+}
+
+.submit-btn {
+    max-height: 38px;
+    text-align: center;
+    min-width: 128px;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
