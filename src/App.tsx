@@ -53,7 +53,7 @@ function App() {
 
             setWeather({
                 location: { city: cityName, country: sys.country },
-                temp: { value: Math.round(Number(main.temp)), unit: "K" },
+                temp: { value: Math.round(Number(main.temp)) },
                 wind: {
                     speed: wind.speed,
                     heading: wind.deg,
