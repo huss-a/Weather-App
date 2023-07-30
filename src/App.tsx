@@ -28,6 +28,7 @@ export interface WeatherProps {
 function App() {
     const [coords, setCoords] = useState(["51.509865", "-0.118092"]);
     const [weather, setWeather] = useState<WeatherProps>();
+    const [geoApiPlaceName, setGeoApiPlaceName] = useState("");
     const [inputPlace, setInputPlace] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [lat, lon] = coords;
@@ -35,8 +36,10 @@ function App() {
     const handleSubmit = async () => {
         setIsLoading(true);
         const data = await fetchCoords(inputPlace).catch(console.error);
-        if (data) setCoords([`${data.lat}`, `${data.lon}`]);
-        else {
+        if (data) {
+            setCoords([`${data.lat}`, `${data.lon}`]);
+            setGeoApiPlaceName(data.name);
+        } else {
             setIsLoading(false);
             toast.error("Invalid location", { autoClose: 2000 });
             return;
@@ -66,7 +69,10 @@ function App() {
             } = data;
 
             setWeather({
-                location: { city: cityName, country: sys.country },
+                location: {
+                    city: geoApiPlaceName || cityName,
+                    country: sys.country,
+                },
                 temp: { value: Math.round(Number(main.temp)) },
                 wind: {
                     speed: wind.speed,

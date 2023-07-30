@@ -34,11 +34,11 @@ const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
                 🌡️ {formatWeather(temp.value, unit)}
                 {unit !== "K" && "°"}
                 <select
-                    value={unit}
+                    defaultValue="C"
                     onChange={e => setUnit(e.target.value as tempUnit)}
                     className="unit-select glass"
                 >
-                    <option value="C" selected>
+                    <option value="C">
                         C
                     </option>
                     <option value="F">F</option>
@@ -46,10 +46,10 @@ const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
                 </select>
             </h1>
             <div className="d-flex justify-content-between align-items-center">
-                <h2 className="p-3 fw-bold">
+                <h3 className="p-3 fw-bold">
                     📍{location.city}
                     {countryName && <>, {countryName}</>}
-                </h2>
+                </h3>
                 <h3 className="p-3 fw-normal">{description}</h3>
             </div>
             <div className="d-flex justify-content-between align-items-center">

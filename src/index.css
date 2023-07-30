@@ -8,6 +8,10 @@
     --ui-width: 55%;
 }
 
+body {
+    position: absolute;
+}
+
 .wrapper {
     background-repeat: no-repeat;
     background-size: cover;
@@ -73,6 +77,12 @@
 @media (max-width: 500px) {
     :root {
         --ui-width: 90%;
+    }
+    .submit-btn {
+        margin-left: 3px;
+    }
+    .form-wrapper .form-control {
+        margin-right: 3px;
     }
 }
 
