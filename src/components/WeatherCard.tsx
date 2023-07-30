@@ -38,9 +38,7 @@ const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
                     onChange={e => setUnit(e.target.value as tempUnit)}
                     className="unit-select glass"
                 >
-                    <option value="C">
-                        C
-                    </option>
+                    <option value="C">C</option>
                     <option value="F">F</option>
                     <option value="K">K</option>
                 </select>
@@ -58,8 +56,8 @@ const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
                     {cloudsPercent}%
                 </h3>
                 <h3 className="p-3 fw-normal">
-                    💨 <span className="fw-semibold">Wind</span> {wind.speed}m/s
-                    at {wind.heading}°
+                    💨 <span className="fw-semibold">Wind</span>{" "}
+                    {Math.round(wind.speed * 10) / 10}m/s at {wind.heading}°
                 </h3>
             </div>
             <div className="d-flex justify-content-between align-items-center">
