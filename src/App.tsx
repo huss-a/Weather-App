@@ -4,6 +4,12 @@ import { fetchCoords, fetchWeather } from "./util/makeRequests";
 import { Button, Form } from "react-bootstrap";
 import Loader from "./components/Loader";
 import { toast } from "react-toastify";
+import image1 from "./images/image1.jpg";
+import image2 from "./images/image2.jpg";
+import image3 from "./images/image3.jpg";
+import image4 from "./images/image4.jpg";
+import image5 from "./images/image5.jpg";
+import image6 from "./images/image6.jpg";
 
 export interface WeatherProps {
     location: { city: string; country: string };
@@ -16,7 +22,7 @@ export interface WeatherProps {
     };
     sunrise: number;
     sunset: number;
-    timezoneOffsetFromUtc: any;
+    timezoneOffsetFromUtc: number;
 }
 
 function App() {
@@ -36,6 +42,14 @@ function App() {
             return;
         }
     };
+
+    useEffect(() => {
+        const images = [image1, image2, image3, image4, image5, image6];
+        const rand = Math.floor(Math.random() * 6);
+        (
+            document.querySelector(".wrapper") as HTMLDivElement
+        ).style.backgroundImage = `url('${images[rand]}')`;
+    }, []);
 
     useEffect(() => {
         const getWeather = async () => {
