@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import { WeatherProps } from "../App";
 import formatTime from "../util/formatTime";
 import countryNameFromCode from "../util/countryNameFromCode";
+import formatWeather, { tempUnit } from "../util/formatWeather";
 
 const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
     const [sunriseTime, setSunriseTime] = useState("");
     const [sunsetTime, setSunsetTime] = useState("");
     const [countryName, setCountryName] = useState("");
+    const [unit, setUnit] = useState<tempUnit>("C");
+
     const {
         location,
         cloudsPercent,
@@ -26,11 +29,21 @@ const WeatherCard = ({ weather }: { weather: WeatherProps }) => {
     }, [weather]);
 
     return (
-        <Card className="weather-card">
+        <Card className="weather-card glass">
             <h1 className="p-3 fw-normal">
-                🌡️ {temp.value}
-                {temp.unit !== "K" && "°"}
-                {temp.unit}
+                🌡️ {formatWeather(temp.value, unit)}
+                {unit !== "K" && "°"}
+                <select
+                    value={unit}
+                    onChange={e => setUnit(e.target.value as tempUnit)}
+                    className="unit-select glass"
+                >
+                    <option value="C" selected>
+                        C
+                    </option>
+                    <option value="F">F</option>
+                    <option value="K">K</option>
+                </select>
             </h1>
             <div className="d-flex justify-content-between align-items-center">
                 <h2 className="p-3 fw-bold">

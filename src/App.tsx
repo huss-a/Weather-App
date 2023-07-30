@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 export interface WeatherProps {
     location: { city: string; country: string };
-    temp: { value: number; unit: "C" | "F" | "K" };
+    temp: { value: number };
     description: string;
     cloudsPercent: number;
     wind: {

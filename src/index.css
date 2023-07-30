@@ -4,6 +4,10 @@
     font-family: Montserrat, sans-serif;
 }
 
+:root {
+    --ui-width: 55%;
+}
+
 .wrapper {
     background-image: url("./images/cris-tagupa-lT7zmkth3o8-unsplash.jpg");
     background-repeat: no-repeat;
@@ -14,10 +18,13 @@
 
 .card.weather-card {
     color: white;
-    width: 55%;
+    width: var(--ui-width);
     border: none;
     border-radius: 25px;
-    background: rgba(0, 0, 0, 0.3);
+}
+
+.glass {
+    background: rgba(0, 0, 0, 0.3) !important;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(4.9px);
@@ -28,7 +35,7 @@
 }
 
 .form-wrapper {
-    width: 55%;
+    width: var(--ui-width);
 }
 
 .loader {
@@ -49,6 +56,25 @@
     max-height: 38px;
     text-align: center;
     min-width: 128px;
+}
+
+.unit-select {
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 990px) {
+    :root {
+        --ui-width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    :root {
+        --ui-width: 90%;
+    }
 }
 
 @keyframes spinner {
