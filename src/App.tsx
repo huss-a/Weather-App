@@ -4,34 +4,23 @@ import { fetchCoords, fetchWeather } from "./util/makeRequests";
 import { Button, Form } from "react-bootstrap";
 import Loader from "./components/Loader";
 import { toast } from "react-toastify";
+
+// bg images chosen at random
 import image1 from "./images/image1.jpg";
 import image2 from "./images/image2.jpg";
 import image3 from "./images/image3.jpg";
 import image4 from "./images/image4.jpg";
 import image5 from "./images/image5.jpg";
 import image6 from "./images/image6.jpg";
-
-export interface WeatherProps {
-    location: { city: string; country: string };
-    temp: { value: number };
-    description: string;
-    cloudsPercent: number;
-    wind: {
-        speed: number;
-        heading: number;
-    };
-    sunrise: number;
-    sunset: number;
-    timezoneOffsetFromUtc: number;
-}
+import WeatherProps from "./types/WeatherProps";
 
 function App() {
-    const [coords, setCoords] = useState(["51.509865", "-0.118092"]);
-    const [weather, setWeather] = useState<WeatherProps>();
-    const [geoApiPlaceName, setGeoApiPlaceName] = useState("");
+    const [coords, setCoords] = useState(["51.509865", "-0.118092"]); // current coords
+    const [weather, setWeather] = useState<WeatherProps>(); // weather object passed into `WeatherCard`
+    const [geoApiPlaceName, setGeoApiPlaceName] = useState(""); // geoapi provides better placename than weather api
     const [inputPlace, setInputPlace] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [lat, lon] = coords;
+    const [lat, lon] = coords; 
 
     const handleSubmit = async () => {
         setIsLoading(true);
@@ -40,13 +29,16 @@ function App() {
             setCoords([`${data.lat}`, `${data.lon}`]);
             setGeoApiPlaceName(data.name);
         } else {
+            // invalid location given, no data returned
             setIsLoading(false);
             toast.error("Invalid location", { autoClose: 2000 });
             return;
         }
     };
 
+    // runs once when the `App` components is first rendered
     useEffect(() => {
+        // choosing bg image at random
         const images = [image1, image2, image3, image4, image5, image6];
         const rand = Math.floor(Math.random() * 6);
         (
@@ -54,6 +46,7 @@ function App() {
         ).style.backgroundImage = `url('${images[rand]}')`;
     }, []);
 
+    // runs everytime the coords value changes, i.e when the user requests weather for another place
     useEffect(() => {
         const getWeather = async () => {
             const data = await fetchWeather(lat, lon).catch(console.error);

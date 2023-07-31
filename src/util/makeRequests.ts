@@ -1,12 +1,19 @@
 import axios from "axios";
 import { geoApiUrl, weatherApiUrl } from "./apiUrl";
+import { toast } from "react-toastify";
 
+// make request to weather api
 export const fetchWeather = async (lat: string, lon: string) => {
-    const data: any = (await axios.get(weatherApiUrl(lat, lon))).data;
-    return data;
+    const res = await axios.get(weatherApiUrl(lat, lon)).catch(err => {
+        toast.error(err.message);
+    });
+    return res?.data;
 };
 
+// make request to geo api
 export const fetchCoords = async (place: string) => {
-    const data: any = (await axios.get(geoApiUrl(place))).data[0];
-    return data;
+    const res = await axios.get(geoApiUrl(place)).catch(err => {
+        toast.error(err.message);
+    });
+    return res?.data[0];
 };
